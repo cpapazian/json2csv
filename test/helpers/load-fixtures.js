@@ -15,6 +15,7 @@ var fixtures = [
   'newLine',
   'fieldNames',
   'withSimpleQuotes',
+  'withSomeQuotes',
   'nested',
   'defaultValue',
   'defaultValueEmpty',

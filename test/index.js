@@ -175,6 +175,20 @@ async.parallel(loadFixtures(csvFixtures), function (err) {
     });
   });
 
+  test('should use return value when \'quotes\' property is a function', function (t) {
+    json2csv({
+      data: jsonDefault,
+      fields: ['carModel', 'price'],
+      quotes: function (v, f) {
+        return v.match(/BMW/) ? '"' : '';
+      }
+    }, function (error, csv) {
+      t.error(error);
+      t.equal(csv, csvFixtures.withSomeQuotes);
+      t.end();
+    });
+  });
+
   test('should use a custom delimiter when \'del\' property is present', function (t) {
     json2csv({
       data: jsonDefault,
